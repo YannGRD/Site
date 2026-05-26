@@ -853,47 +853,38 @@ h1, h2, h3, h4, h5, h6 {
 
 .cs-visuals { padding-bottom: var(--space-3xl); }
 
+/* Mosaïque masonry-style — colonnes CSS pour respecter les ratios natifs sans crop */
 .cs-visuals__grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--space-s);
-  grid-auto-flow: dense;
+  column-count: 3;
+  column-gap: var(--space-s);
 }
 
 .cs-visual {
+  break-inside: avoid;
+  margin: 0 0 var(--space-s);
   background: var(--color-line);
   overflow: hidden;
   position: relative;
+  display: block;
 }
 .cs-visual img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
   transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .cs-visual:hover img { transform: scale(1.04); }
 
-.cs-visual--hero { grid-column: 1 / -1; aspect-ratio: 21 / 9; }
-.cs-visual--tall { grid-column: span 5; aspect-ratio: 3 / 4; }
-.cs-visual--wide { grid-column: span 7; aspect-ratio: 4 / 3; }
-.cs-visual--half-l { grid-column: 1 / span 6; aspect-ratio: 4 / 3; }
-.cs-visual--half-r { grid-column: 7 / span 6; aspect-ratio: 4 / 3; }
-.cs-visual--offset { grid-column: 4 / span 7; aspect-ratio: 16 / 9; }
-.cs-visual--small { grid-column: span 5; aspect-ratio: 1; }
+/* Variante 2 colonnes — pour les pages avec peu de visuels (Sciences Po EE par ex.) */
+.cs-visuals__grid--narrow { column-count: 2; }
 
-@media (max-width: 800px) {
-  .cs-visuals__grid { grid-template-columns: 1fr; }
-  .cs-visual,
-  .cs-visual--hero,
-  .cs-visual--tall,
-  .cs-visual--wide,
-  .cs-visual--half-l,
-  .cs-visual--half-r,
-  .cs-visual--offset,
-  .cs-visual--small {
-    grid-column: 1 / -1;
-    aspect-ratio: 4 / 3;
-  }
+@media (max-width: 1024px) {
+  .cs-visuals__grid { column-count: 2; }
+}
+
+@media (max-width: 600px) {
+  .cs-visuals__grid,
+  .cs-visuals__grid--narrow { column-count: 1; }
 }
 
 .cs-results {
@@ -987,10 +978,159 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
+/* === Variantes de grille KPI === */
+
+/* 4 cellules — Intercéréales, SIETREM */
+.cs-results__grid--four { grid-template-columns: repeat(4, 1fr); gap: var(--space-m); }
+.cs-results__grid--four .cs-result:nth-child(2) { transform: translateY(1.5rem); }
+.cs-results__grid--four .cs-result:nth-child(3) { transform: translateY(3rem); }
+.cs-results__grid--four .cs-result:nth-child(4) { transform: translateY(4.5rem); }
+.cs-results__grid--four .cs-result__num { font-size: clamp(2.5rem, 6vw, 5rem); }
+
+/* 1 cellule qualitative — Sciences Po Executive Education */
+.cs-results__grid--single {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+}
+.cs-result--qualitative {
+  text-align: center;
+  border-top: 1px solid #2a2a2a;
+  padding-top: var(--space-l);
+  transform: none !important;
+}
+.cs-result--qualitative .cs-result__num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: var(--space-s);
+}
+.cs-result--qualitative .cs-result__label {
+  display: block;
+  font-size: var(--step-1);
+  color: rgba(248,247,244,0.85);
+  line-height: 1.4;
+}
+
+/* Chiffres longs (Netflix « 100 000 ») — réduit la fonte pour tenir */
+.cs-result__num--long {
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem) !important;
+  letter-spacing: -0.03em;
+}
+
+/* === Bloc vidéos — pattern lazy-load YouTube === */
+
+.cs-videos {
+  padding: var(--space-3xl) 0;
+  background: var(--color-bg);
+  position: relative;
+}
+.cs-videos__intro { margin-bottom: var(--space-2xl); }
+.cs-videos__intro h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-5);
+  margin-top: var(--space-s);
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+.cs-videos__intro p {
+  margin-top: var(--space-m);
+  font-size: var(--step-1);
+  max-width: 60ch;
+  color: var(--color-mute);
+}
+
+.cs-video {
+  position: relative;
+  background: var(--color-bg-dark);
+  overflow: hidden;
+}
+.cs-video--main {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+.cs-video__embed { position: relative; width: 100%; height: 100%; }
+.cs-video__embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.cs-video__thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.cs-video__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.15);
+  border: 0;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.cs-video__play:hover { background: rgba(0,0,0,0.35); }
+.cs-video__play:hover ~ .cs-video__thumb,
+.cs-video:hover .cs-video__thumb { transform: scale(1.04); }
+.cs-video__play::before {
+  content: "▶";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  padding-left: 0.25em;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+}
+.cs-video__play:hover::before { transform: scale(1.1); }
+
+/* Carrousel léger horizontal pour vidéos courtes (Sciences Po EE) */
+.cs-videos__carousel {
+  display: flex;
+  gap: var(--space-s);
+  overflow-x: auto;
+  padding: var(--space-l) 0 var(--space-s);
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.cs-video--small {
+  flex: 0 0 280px;
+  aspect-ratio: 9 / 16;
+  scroll-snap-align: start;
+}
+.cs-video--small .cs-video__play::before {
+  width: 56px;
+  height: 56px;
+  font-size: 1rem;
+}
+
 @media (max-width: 800px) {
   .cs-results__grid { grid-template-columns: 1fr; gap: var(--space-m); }
   .cs-result:nth-child(2),
   .cs-result:nth-child(3) { transform: none; }
+  .cs-results__grid--four { grid-template-columns: 1fr; }
+  .cs-results__grid--four .cs-result:nth-child(2),
+  .cs-results__grid--four .cs-result:nth-child(3),
+  .cs-results__grid--four .cs-result:nth-child(4) { transform: none; }
+  .cs-video__play::before { width: 64px; height: 64px; font-size: 1.1rem; }
+  .cs-video--small { flex: 0 0 220px; }
+  .cs-video--small .cs-video__play::before { width: 48px; height: 48px; font-size: 0.85rem; }
 }
 
 .cs-nav {

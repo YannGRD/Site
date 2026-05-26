@@ -90,4 +90,21 @@
     });
   });
 
+  // ====== YouTube lazy-load (vignette → iframe) ======
+  document.querySelectorAll('.cs-video__play').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const wrap = btn.closest('.cs-video');
+      const id = wrap.getAttribute('data-youtube-id');
+      if (!id) return;
+      const params = 'modestbranding=1&rel=0&autoplay=1&playsinline=1';
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?' + params;
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('title', wrap.getAttribute('data-title') || 'Vidéo YouTube');
+      wrap.innerHTML = '';
+      wrap.appendChild(iframe);
+    }, { once: true });
+  });
+
 })();
