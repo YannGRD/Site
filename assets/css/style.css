@@ -126,10 +126,25 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
   pointer-events: none;
   color: var(--color-bg);
-  transition: color 0.4s ease;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  transition: color 0.4s ease, background 0.4s ease, backdrop-filter 0.4s ease;
 }
 .nav > * { pointer-events: auto; }
+
+/* État scrollé — fond translucide pour éviter les superpositions de texte */
+.nav.nav--scrolled {
+  background: rgba(11, 11, 11, 0.55);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+}
+
+/* Thème clair — section au fond clair, nav texte sombre */
 .nav.nav--dark { color: var(--color-ink); }
+.nav.nav--dark.nav--scrolled {
+  background: rgba(248, 247, 244, 0.82);
+}
 
 .nav__brand {
   font-family: var(--font-display);
@@ -1212,4 +1227,187 @@ h1, h2, h3, h4, h5, h6 {
     scroll-behavior: auto !important;
   }
   [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ====== CTA MÉTHODE HOME (lien vers page Méthode dédiée) ====== */
+
+.method__cta {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-l);
+  border-top: 1px solid var(--color-line);
+  text-align: center;
+}
+.method__link {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  color: var(--color-ink);
+  padding: 0.5em 0;
+  position: relative;
+  transition: color 0.3s ease, letter-spacing 0.4s ease;
+}
+.method__link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transform-origin: right;
+  transform: scaleX(1);
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.method__link:hover {
+  color: var(--color-accent);
+  letter-spacing: 0.06em;
+}
+.method__link:hover::after {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+/* ====== PAGE MÉTHODE DÉDIÉE ====== */
+
+.method-page__hero {
+  background: var(--color-bg-dark);
+  color: var(--color-bg);
+  padding: calc(var(--space-3xl) * 1.4) 0 var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+}
+.method-page__hero .eyebrow {
+  color: rgba(248,247,244,0.5);
+}
+.method-page__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  margin-top: var(--space-m);
+  max-width: 18ch;
+}
+.method-page__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(248,247,244,0.7);
+  letter-spacing: -0.02em;
+}
+
+.method-page {
+  padding: var(--space-3xl) 0;
+}
+
+.method-page__intro {
+  max-width: 70ch;
+  margin: 0 0 var(--space-3xl);
+}
+.method-page__intro p {
+  font-size: var(--step-1);
+  line-height: 1.55;
+  margin-bottom: var(--space-m);
+}
+.method-page__intro p:first-child {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--step-2);
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+
+.method-page__step {
+  margin-bottom: var(--space-3xl);
+  padding-top: var(--space-2xl);
+  border-top: 1px solid var(--color-line);
+}
+.method-page__step-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-m);
+  align-items: baseline;
+  margin-bottom: var(--space-l);
+}
+.method-page__step-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1;
+  color: var(--color-accent);
+  letter-spacing: -0.03em;
+}
+.method-page__step-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-3);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 0.3em;
+}
+.method-page__step-title {
+  font-family: var(--font-serif);
+  font-size: var(--step-1);
+  color: var(--color-mute);
+  margin: 0;
+}
+.method-page__step-title em {
+  font-style: italic;
+}
+.method-page__step-body {
+  max-width: 70ch;
+  margin-left: clamp(0px, 8vw, 80px);
+}
+.method-page__step-body p {
+  font-size: var(--step-1);
+  line-height: 1.65;
+  margin-bottom: var(--space-m);
+}
+
+/* Paragraphe d'incarnation — filet rouge accent à gauche */
+.method-page__example {
+  border-left: 3px solid var(--color-accent);
+  padding-left: var(--space-m);
+  margin-left: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: rgba(11,11,11,0.78);
+  font-size: var(--step-0) !important;
+  line-height: 1.6 !important;
+}
+
+.method-page__block {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-2xl);
+  border-top: 1px solid var(--color-line);
+  max-width: 70ch;
+}
+.method-page__block-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-3);
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-m);
+}
+.method-page__block p {
+  font-size: var(--step-1);
+  line-height: 1.65;
+  margin-bottom: var(--space-m);
+}
+.method-page__block p em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-accent);
+}
+.method-page__block--final {
+  margin-bottom: 0;
+  padding-bottom: var(--space-l);
+}
+
+@media (max-width: 800px) {
+  .method-page__step-body { margin-left: 0; }
+  .method-page__step-head {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
 }

@@ -29,6 +29,23 @@
     themedSections.forEach(s => navObserver.observe(s));
   }
 
+  // ====== Nav scrolled state (translucent backdrop) ======
+  // Adds .nav--scrolled when the user has scrolled past the top, to avoid text overlaps.
+  if (nav) {
+    let navScrollTicking = false;
+    const updateNavScrolled = () => {
+      nav.classList.toggle('nav--scrolled', window.scrollY > 40);
+      navScrollTicking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!navScrollTicking) {
+        requestAnimationFrame(updateNavScrolled);
+        navScrollTicking = true;
+      }
+    }, { passive: true });
+    updateNavScrolled();
+  }
+
   // Reduced motion guard
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reducedMotion) return;
