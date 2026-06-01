@@ -1265,16 +1265,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 .method__link {
   display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  font-family: var(--font-body);
-  font-size: var(--step-0);
-  letter-spacing: 0.04em;
-  font-weight: 500;
-  color: var(--color-ink);
-  padding: 0.5em 0 0.55em;
+  align-items: baseline;
+  gap: 0.35em;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--step-2);
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--color-accent);
+  padding-bottom: 0.12em;
   position: relative;
-  transition: color 0.3s ease;
 }
 .method__link::after {
   content: '';
@@ -1283,15 +1283,14 @@ h1, h2, h3, h4, h5, h6 {
   height: 1px;
   background: var(--color-accent);
   transform-origin: right;
-  transform: scaleX(0);
+  transform: scaleX(1);
   transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 .method__link-arrow {
   display: inline-block;
-  color: var(--color-accent);
+  font-style: normal;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.method__link:hover { color: var(--color-accent); }
 .method__link:hover::after {
   transform-origin: left;
   transform: scaleX(1);
@@ -1511,26 +1510,34 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: var(--space-l);
 }
 
-/* CTA de fin — lien vers le contact */
+/* CTA de fin — lien vers le contact (Direction 3 : bichromie) */
 .method-page__cta-link {
   display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
+  align-items: baseline;
+  gap: 0.3em;
   margin-top: var(--space-m);
+  font-size: var(--step-3);
+  line-height: 1.1;
+}
+.method-page__cta-lead {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: var(--step-2);
   letter-spacing: -0.02em;
   color: var(--color-ink);
-  padding-bottom: 0.15em;
-  border-bottom: 2px solid var(--color-accent);
   transition: color 0.3s ease;
 }
+.method-page__cta-em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-accent);
+}
 .method-page__cta-arrow {
+  font-style: normal;
   color: var(--color-accent);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.method-page__cta-link:hover { color: var(--color-accent); }
+.method-page__cta-link:hover .method-page__cta-lead { color: var(--color-accent); }
 .method-page__cta-link:hover .method-page__cta-arrow { transform: translateX(5px); }
 
 @media (max-width: 800px) {
