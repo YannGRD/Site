@@ -1385,7 +1385,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .method-page {
-  padding: var(--space-3xl) 0;
+  padding-block: var(--space-3xl);
 }
 
 .method-page__intro {
