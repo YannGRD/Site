@@ -125,3 +125,21 @@
   });
 
 })();
+
+/* Études de cas — tap pour ouvrir/fermer sur mobile (pas de survol) */
+(function () {
+  var split = document.querySelector('.vc-split');
+  if (!split) return;
+  var panels = Array.prototype.slice.call(split.querySelectorAll('.vc-panel'));
+  var noHover = window.matchMedia('(hover: none)').matches;
+  if (!noHover) return;
+  panels.forEach(function (p) {
+    var prompt = p.querySelector('.vc-panel__prompt');
+    if (prompt && prompt.firstChild) prompt.firstChild.textContent = 'Touchez pour lire ';
+    p.addEventListener('click', function () {
+      var wasOpen = p.classList.contains('is-open');
+      panels.forEach(function (q) { q.classList.remove('is-open'); });
+      if (!wasOpen) p.classList.add('is-open');
+    });
+  });
+})();
