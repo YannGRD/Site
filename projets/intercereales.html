@@ -38,7 +38,7 @@
     <li><a href="../index.html#projets">Projets</a></li>
     <li><a href="../methode.html">Méthode</a></li>
     <li><a href="../a-propos.html">À propos</a></li>
-    <li><a href="../quand-faire-appel.html">Quand faire appel</a></li>
+    <li><a href="../quand-faire-appel.html">Quand</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -122,8 +122,8 @@
 </section>
 
 <!-- ===== Dispositif ===== -->
-<section class="container cs-schema" data-nav-theme="light" aria-labelledby="disp-title">
-  <div class="cs-schema__panel">
+<section class="cs-schema cs-schema--light" data-nav-theme="light" aria-labelledby="disp-title">
+  <div class="container">
     <div class="cs-schema__intro">
       <span class="eyebrow" data-reveal>Le dispositif</span>
       <h2 id="disp-title" data-reveal data-reveal-delay="1">Une idée,<br>déployée partout.</h2>
@@ -131,18 +131,27 @@
     <div class="cs-schema__fig" data-reveal data-reveal-delay="2">
 <svg viewBox="0 0 900 800" role="img" aria-label="Dispositif Sans pain c'est moins bien : une idée centrale déployée en cinq familles de supports, dans un cadre européen multi-institutionnel.">
   <defs><style>
-    .sl{font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:22px;fill:#f8f7f4;letter-spacing:-.01em}
-    .hw3{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:22px;fill:#f8f7f4}
-    .frm2{font-family:'General Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;fill:#ff8f8f}
+    .sl{font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:23px;fill:#111111;letter-spacing:-.01em}
+    .hw3{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:23px;fill:#ffffff;letter-spacing:-.01em}
+    .frm2{font-family:'General Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;fill:#ffffff}
   </style></defs>
-  <rect x="40" y="120" width="820" height="620" rx="24" fill="none" stroke="#f8f7f4" stroke-opacity=".28" stroke-width="1.5"/>
-  <rect x="210" y="107" width="480" height="26" fill="#111111"/>
-  <text x="450" y="125" text-anchor="middle" class="frm2">FRANCE + BELGIQUE · 70 % COFINANCÉ PAR L'UE</text>
-  <line x1="353" y1="354" x2="312" y2="330" stroke="#f8f7f4" stroke-width="1.6" stroke-dasharray="2 8" opacity=".38"/><line x1="547" y1="354" x2="588" y2="330" stroke="#f8f7f4" stroke-width="1.6" stroke-dasharray="2 8" opacity=".38"/><line x1="547" y1="466" x2="588" y2="490" stroke="#f8f7f4" stroke-width="1.6" stroke-dasharray="2 8" opacity=".38"/><line x1="450" y1="522" x2="450" y2="569" stroke="#f8f7f4" stroke-width="1.6" stroke-dasharray="2 8" opacity=".38"/><line x1="353" y1="466" x2="312" y2="490" stroke="#f8f7f4" stroke-width="1.6" stroke-dasharray="2 8" opacity=".38"/>
-  <circle cx="450" cy="410" r="112" fill="#BA0000"/>
+  <!-- cadre européen -->
+  <rect x="40" y="122" width="820" height="620" rx="24" fill="none" stroke="#111111" stroke-opacity=".2" stroke-width="1.5"/>
+  <rect x="188" y="105" width="524" height="34" rx="17" fill="#BA0000"/>
+  <text x="450" y="127" text-anchor="middle" class="frm2">FRANCE + BELGIQUE · 70 % COFINANCÉ PAR L'UE</text>
+  <!-- rayons -->
+  <line x1="348.8" y1="355.4" x2="318" y2="338.7" stroke="#111111" stroke-width="1.5" stroke-dasharray="2 8" opacity=".2"/>
+  <line x1="551.2" y1="355.4" x2="582" y2="338.7" stroke="#111111" stroke-width="1.5" stroke-dasharray="2 8" opacity=".2"/>
+  <line x1="547.9" y1="470.5" x2="577.7" y2="489" stroke="#111111" stroke-width="1.5" stroke-dasharray="2 8" opacity=".2"/>
+  <line x1="450" y1="525" x2="450" y2="562" stroke="#111111" stroke-width="1.5" stroke-dasharray="2 8" opacity=".2"/>
+  <line x1="352.1" y1="470.5" x2="322.3" y2="489" stroke="#111111" stroke-width="1.5" stroke-dasharray="2 8" opacity=".2"/>
+  <circle cx="318" cy="338.7" r="5" fill="#BA0000"/><circle cx="582" cy="338.7" r="5" fill="#BA0000"/><circle cx="577.7" cy="489" r="5" fill="#BA0000"/><circle cx="450" cy="562" r="5" fill="#BA0000"/><circle cx="322.3" cy="489" r="5" fill="#BA0000"/>
+  <!-- idée centrale -->
+  <circle cx="450" cy="410" r="115" fill="#BA0000"/>
   <text x="450" y="404" text-anchor="middle" class="hw3">« Sans pain,</text>
-  <text x="450" y="432" text-anchor="middle" class="hw3">c'est moins bien »</text>
-  <text x="272" y="314" text-anchor="middle" class="sl">Court-métrage</text><text x="628" y="314" text-anchor="middle" class="sl">Affichage & métro</text><text x="628" y="520" text-anchor="middle" class="sl">Festivals & salons</text><text x="450" y="622" text-anchor="middle" class="sl">Lives Twitch</text><text x="272" y="520" text-anchor="middle" class="sl">Influence</text>
+  <text x="450" y="433" text-anchor="middle" class="hw3">c'est moins bien »</text>
+  <!-- supports -->
+  <text x="262" y="306" text-anchor="middle" class="sl">Court-métrage</text><text x="638" y="306" text-anchor="middle" class="sl">Affichage &amp; métro</text><text x="638" y="524" text-anchor="middle" class="sl">Festivals &amp; salons</text><text x="450" y="628" text-anchor="middle" class="sl">Lives Twitch</text><text x="262" y="524" text-anchor="middle" class="sl">Influence</text>
 </svg>
     </div>
     <div class="cs-schema__list" data-reveal>
@@ -295,11 +304,13 @@
     </h2>
 
     <div class="contact__body" data-reveal>
+      <div class="contact__intro">
       <p class="contact__pitch">
         Tout le monde a un projet. Peu lui donnent sa couleur.<br>
         Si votre projet mérite mieux que le gris, <span class="accent">parlons-en.</span>
       </p>
       <p class="contact__availability">Freelance, basé en Île-de-France. Disponible pour des missions partout en France, sur place ou à distance.</p>
+      </div>
 
       <div class="contact__details">
         <div class="name">Yann GRD</div>
