@@ -946,6 +946,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cs-results__bg-text {
+  display: none;
   position: absolute;
   top: -3vw;
   right: -10vw;
@@ -1587,7 +1588,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact__form-btn:hover{transform:translateY(-2px);opacity:.92}
 
 /* ===== Études de cas — composant Voix / Couleur ===== */
-.vc-split{display:flex;gap:0;margin-top:3.4rem;min-height:640px;border-radius:16px;overflow:hidden}
+.vc-split{display:flex;gap:14px;margin-top:3.4rem;min-height:640px;border-radius:16px;overflow:hidden}
 /* pleine largeur : le noir file au bord gauche, le rouge au bord droit */
 @media (min-width:721px){
   .vc-full{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border-radius:0}
@@ -1629,9 +1630,9 @@ h1, h2, h3, h4, h5, h6 {
   .vc-panel--voix,.vc-panel--couleur{align-items:flex-start;text-align:left}
 }
 
-/* conclusion : le pendant de l'intro, sur bande noire */
-.vc-conclusion{background:var(--color-bg-dark);padding-block:var(--space-3xl)}
-.vc-synthesis{font-family:var(--font-serif);font-style:italic;font-size:var(--step-4);line-height:1.15;letter-spacing:-.02em;max-width:34ch;margin:0;text-align:left;color:var(--color-bg)}
+/* conclusion : le pendant de l'intro, sur fond crème */
+.vc-conclusion{padding-block:var(--space-3xl)}
+.vc-synthesis{font-family:var(--font-serif);font-style:italic;font-size:var(--step-4);line-height:1.15;letter-spacing:-.02em;max-width:34ch;margin:0;text-align:left;color:var(--color-ink)}
 .vc-synthesis em{font-style:italic;color:var(--color-accent)}
 .vc-ar{font-size:1.1em;line-height:1}
 
