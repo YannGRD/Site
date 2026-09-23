@@ -766,8 +766,11 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 0;
 }
 .cs-hero__bg img {
+  position: absolute;
+  top: -15%;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 130%;
   object-fit: cover;
   opacity: 0.4;
   /* Filtre noir & blanc + sépia subtil pour matcher le portrait */
@@ -1217,7 +1220,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 0.95;
   letter-spacing: -0.025em;
 }
-.cs-nav__link .title .nb { white-space: nowrap; }
+.nb { white-space: nowrap; }
 .cs-nav__link .title em {
   font-family: var(--font-serif);
   font-style: italic;
@@ -1595,24 +1598,21 @@ h1, h2, h3, h4, h5, h6 {
 .vc-split .vc-panel:hover,.vc-split .vc-panel.is-open{flex:3}
 .vc-panel--voix{background:var(--color-bg-dark);color:var(--color-bg)}
 .vc-panel--couleur{background:var(--color-accent);color:var(--color-bg)}
-/* ferrage au repos : le noir vers le centre (droite), le rouge vers le centre (gauche) */
-.vc-panel--voix{align-items:flex-end;text-align:right}
+/* le noir se cale à droite de sa colonne (suit l'extension vers la droite),
+   le rouge à gauche : deux miroirs. Les lignes restent alignées à gauche. */
+.vc-panel--voix{align-items:flex-end;text-align:left}
 .vc-panel--couleur{align-items:flex-start;text-align:left}
-/* au dépliage, tout se ferre à gauche pour la lecture */
-.vc-split:hover .vc-panel,.vc-split:focus-within .vc-panel,.vc-split:has(.vc-panel.is-open) .vc-panel{align-items:flex-start;text-align:left}
 .vc-panel__label{font-family:var(--font-display);font-weight:500;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase}
 .vc-panel--voix .vc-panel__label{color:var(--color-accent)}
 .vc-panel--couleur .vc-panel__label{color:var(--color-ink)}
 .vc-panel__title{font-family:var(--font-display);font-weight:700;font-size:var(--step-4);line-height:1.02;margin:1.2rem 0 0;letter-spacing:-.02em;white-space:normal}
-.vc-panel__reveal{opacity:0;max-height:0;overflow:hidden;transition:opacity .45s ease .1s,max-height .55s ease,transform .6s cubic-bezier(.22,.61,.36,1) .06s}
-/* La voix : slide latéral, le texte arrive par la droite en suivant le déploiement */
-.vc-panel--voix .vc-panel__reveal{transform:translateX(52px)}
+.vc-panel__reveal{opacity:0;max-height:0;overflow:hidden;transition:opacity .45s ease .1s,max-height .55s ease}
 .vc-panel:hover .vc-panel__reveal,.vc-panel.is-open .vc-panel__reveal{opacity:1;max-height:1400px}
-.vc-panel--voix:hover .vc-panel__reveal,.vc-panel--voix.is-open .vc-panel__reveal{transform:translateX(0)}
 .vc-panel__reveal p{font-size:var(--step-1);line-height:1.55;max-width:46ch;margin-top:1.6rem}
 .vc-panel--voix .vc-panel__reveal strong{color:var(--color-accent);font-weight:500}
 .vc-panel--couleur .vc-panel__reveal strong{color:var(--color-ink);font-weight:500}
-.vc-signature{font-family:var(--font-serif);font-style:italic;font-size:var(--step-3);line-height:1.2;margin-top:1.8rem}
+.vc-signature{font-family:var(--font-serif);font-style:italic;font-size:var(--step-4);line-height:1.15;letter-spacing:-.01em;margin-top:2.2rem;max-width:24ch}
+.vc-panel--voix .vc-signature{color:var(--color-accent)}
 .vc-tags{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.5rem}
 .vc-tag{font-family:var(--font-display);font-weight:500;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .7rem;border-radius:999px;white-space:nowrap}
 .vc-panel--voix .vc-tag{border:1px solid rgba(248,247,244,.28)}
@@ -1708,7 +1708,7 @@ h1, h2, h3, h4, h5, h6 {
 .notfound__links a:not(.notfound__cta):hover { color: var(--color-ink); }
 
 /* ====== CASE SCHEMA — sur fond crème, sans encadré ====== */
-.cs-schema { padding-block: var(--space-l); }
+.cs-schema { padding-block: var(--space-l) var(--space-2xl); }
 .cs-schema--light { background: transparent; }
 .cs-schema__intro { margin-bottom: var(--space-l); }
 .cs-schema__intro .eyebrow { color: var(--color-accent); }
