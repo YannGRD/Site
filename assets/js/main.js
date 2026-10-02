@@ -46,13 +46,16 @@
     updateNavScrolled();
   }
 
-  // Reduced motion guard
+  // Reduced motion: on coupe les animations (reveal, parallax, défilement doux),
+  // jamais les fonctions (lecture des vidéos, ancres).
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reducedMotion) return;
 
   // ====== Reveal on scroll ======
   const revealEls = document.querySelectorAll('[data-reveal]');
-  if (revealEls.length && 'IntersectionObserver' in window) {
+  if (revealEls.length && (reducedMotion || !('IntersectionObserver' in window))) {
+    // Pas d'animation possible ou souhaitée : tout est affiché d'emblée.
+    revealEls.forEach(el => el.classList.add('in-view'));
+  } else if (revealEls.length) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -69,7 +72,7 @@
 
   // ====== Parallax (requestAnimationFrame, lightweight) ======
   const parallaxEls = document.querySelectorAll('[data-parallax]');
-  if (parallaxEls.length) {
+  if (parallaxEls.length && !reducedMotion) {
     let ticking = false;
     const updateParallax = () => {
       const scrollY = window.scrollY;
@@ -103,7 +106,7 @@
       if (!target) return;
       e.preventDefault();
       const top = target.getBoundingClientRect().top + window.scrollY - 20;
-      window.scrollTo({ top, behavior: 'smooth' });
+      window.scrollTo({ top, behavior: reducedMotion ? 'auto' : 'smooth' });
     });
   });
 
@@ -140,6 +143,32 @@
       var wasOpen = p.classList.contains('is-open');
       panels.forEach(function (q) { q.classList.remove('is-open'); });
       if (!wasOpen) p.classList.add('is-open');
+    });
+  });
+})();
+
+/* Formulaire de contact — envoi Formspree sans quitter la page (déplacé depuis index.html, pour la CSP) */
+(function () {
+  var form = document.querySelector('.contact__form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Envoi…'; }
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (res) {
+      if (res.ok) { try { if (window.umami) umami.track('contact-submit'); } catch (e) {} window.location.href = '/merci.html'; return; }
+      return res.json().then(function (d) {
+        alert((d && d.errors) ? d.errors.map(function (x) { return x.message; }).join(', ')
+                              : "L'envoi a échoué. Réessayez, ou écrivez-moi à contact@yanngrd.com.");
+        if (btn) { btn.disabled = false; btn.textContent = 'Envoyer'; }
+      });
+    }).catch(function () {
+      alert("Problème réseau. Réessayez, ou écrivez-moi à contact@yanngrd.com.");
+      if (btn) { btn.disabled = false; btn.textContent = 'Envoyer'; }
     });
   });
 })();

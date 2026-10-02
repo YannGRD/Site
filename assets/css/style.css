@@ -1783,3 +1783,57 @@ h1, h2, h3, h4, h5, h6 {
 
 /* rights = petit, comme la mention formulaire */
 .contact__rights { grid-column: 1 / -1; justify-self: center; text-align: center; margin: var(--space-s) auto 0; font-size: var(--step--1); text-transform: none; letter-spacing: 0; font-weight: 400; line-height: 1.45; color: var(--color-mute); max-width: 62ch; }
+
+/* ===== Page merci (déplacé depuis merci.html, pour la CSP) ===== */
+.thanks{min-height:70vh;display:flex;align-items:center}
+.thanks__inner{max-width:720px}
+.thanks__rule{display:block;width:54px;height:5px;background:var(--color-accent);margin-bottom:var(--space-m)}
+.thanks__title{font-family:var(--font-display);font-weight:700;font-size:var(--step-6);line-height:1.0;letter-spacing:-.03em;color:var(--color-ink);margin-bottom:var(--space-s)}
+.thanks__title .accent{color:var(--color-accent);font-family:var(--font-serif);font-style:italic}
+.thanks__body{font-family:var(--font-body);font-size:var(--step-1);color:var(--color-ink);margin-bottom:var(--space-l);max-width:46ch}
+.thanks__btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--color-ink);color:var(--color-bg);font-family:var(--font-display);font-weight:700;font-size:var(--step-0);padding:.8rem 1.8rem;border-radius:999px;text-decoration:none;transition:transform .2s,opacity .2s}
+.thanks__btn:hover{transform:translateY(-2px);opacity:.92}
+.thanks__btn .dot{width:8px;height:8px;background:var(--color-accent);border-radius:50%}
+
+/* ===== Schémas SVG des études de cas (déplacé depuis les pages, pour la CSP) ===== */
+.cs-schema__fig .ghost{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:46px;fill:#111111;opacity:.11}
+.cs-schema__fig .nlab{font-family:'Cabinet Grotesk',sans-serif;font-weight:600;font-size:21px;fill:#111111;letter-spacing:-.01em}
+.cs-schema__fig .hubt{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:27px;fill:#ffffff;letter-spacing:-.01em}
+.cs-schema__fig .huburl{font-family:'General Sans',sans-serif;font-weight:500;font-size:14px;fill:#f6c9c9;letter-spacing:.02em}
+.cs-schema__fig .sl{font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:23px;fill:#111111;letter-spacing:-.01em}
+.cs-schema__fig .hw3{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:23px;fill:#ffffff;letter-spacing:-.01em}
+.cs-schema__fig .frm2{font-family:'General Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;fill:#ffffff}
+.cs-schema__fig .tw{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:31px;fill:#111111;letter-spacing:-.02em}
+.cs-schema__fig .to{font-family:'Editorial New',serif;font-style:italic;font-size:19px;fill:#BA0000}
+.cs-schema__fig .hw2{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:23px;fill:#ffffff;letter-spacing:-.01em}
+.cs-schema__fig .beye2{font-family:'General Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:.22em;fill:#BA0000}
+.cs-schema__fig .btxt2{font-family:'General Sans',sans-serif;font-weight:500;font-size:17px;fill:#111111}
+
+/* ===== Champ anti-spam du formulaire (déplacé depuis index.html, pour la CSP) ===== */
+.contact__hp { position: absolute; left: -9999px; }
+
+/* ===== Sélection de projets : prix et rôle sur des lignes distinctes ===== */
+.project-row__meta { line-height: 1.75; }
+.project-row__meta .award,
+.project-row__meta .role { display: block; }
+
+/* ===== Sans JavaScript : le contenu reste visible ===== */
+@media (scripting: none) {
+  [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ===== Mobile : les prix restent visibles sous le nom du projet, le compteur passe sous le titre ===== */
+@media (max-width: 800px) {
+  .project-row__meta--prized {
+    display: block;
+    grid-column: 2;
+    text-align: left;
+    white-space: normal;
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+  }
+  .project-row__meta--prized .role { display: none; }
+}
+@media (max-width: 640px) {
+  .projects__header { grid-template-columns: 1fr; gap: var(--space-s); }
+}
