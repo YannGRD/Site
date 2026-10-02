@@ -1829,8 +1829,9 @@ h1, h2, h3, h4, h5, h6 {
     grid-column: 2;
     text-align: left;
     white-space: normal;
-    letter-spacing: 0.1em;
-    line-height: 1.6;
+    font-size: clamp(9px, 2.85vw, 11px);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
   }
   .project-row__meta--prized .role { display: none; }
 }
